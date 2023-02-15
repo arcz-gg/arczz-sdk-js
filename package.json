@@ -2,8 +2,9 @@
   "name": "arczz-sdk-js",
   "version": "1.0.0",
   "description": "",
-  "main": "./build/package",
+  "main": "./build/package/index/js",
   "types": "./build/package/index.d.ts",
+  "type": "module",
   "scripts": {
     "build": "tsc",
     "prepare": "pnpm run build"
