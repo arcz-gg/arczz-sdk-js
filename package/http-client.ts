@@ -6,7 +6,6 @@ interface RequestOptions {
 
   accessToken: string
   timeoutMs: number
-  baseUrl: string
   path: string
   method: 'get'
   | 'post'
@@ -30,6 +29,7 @@ class HttpClient {
     path
   }: Partial<RequestOptions>
   ): Promise<T> {
+
     const authorizationHeader = this.accessToken !== undefined
       ? { Authorization: `Bearer: ${this.accessToken}` }
       : {}
@@ -39,7 +39,7 @@ class HttpClient {
         ? undefined
         : JSON.stringify(body)
 
-    const url = new URL(path, this.baseUrl)
+    const url = new URL(path ?? "", this.baseUrl)
 
     const headers: RawAxiosRequestHeaders = {
       ...authorizationHeader,
@@ -58,14 +58,13 @@ class HttpClient {
     return response.data
   }
 
-  public async ping<T>(url: URL): Promise<T> {
-    const reqOptions: Partial<RequestOptions> = {
-      method: 'get',
-      baseUrl: url
-    }
+  public async ping<T>(): Promise<T> {
 
-    return await this.req(reqOptions)
+    return await this.req({ method: "get" })
   }
 }
 
-export default HttpClient
+export default HttpClient;
+export { 
+  RequestOptions
+}

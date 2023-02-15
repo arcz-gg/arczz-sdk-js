@@ -1,5 +1,4 @@
 import { default as HttpClient } from './http-client'
-
 interface ClientOptions {
 
   auth?: string
