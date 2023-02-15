@@ -1,9 +1,6 @@
-<div align="center>
-    <h1>Arczz SDK for JavaScript | Typescript</h1>
-    <p>
-        <b> A simple and easy to uese client for the Arczz API </b>
-    </p>
-</div>
+# Arczz SDK for JavaScript | Typescript
+
+> A simple and easy to uese client for the Arczz API
 
 ## Instalation
 
