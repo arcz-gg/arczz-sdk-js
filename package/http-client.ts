@@ -11,6 +11,7 @@ interface RequestOptions {
   | 'post'
   | 'put'
   | 'delete'
+  | 'patch'
   body?: Record<string, unknown>
 }
 
@@ -43,7 +44,7 @@ class HttpClient {
 
     const headers: RawAxiosRequestHeaders = {
       ...authorizationHeader,
-      'User-Agent': 'arczz-sdk/1.0'
+      'User-Agent': 'arczz-sdk-js/1.0'
     }
 
     if (data != undefined) { headers['content-type'] = 'application/json' }
@@ -57,10 +58,66 @@ class HttpClient {
 
     return response.data
   }
+  
+  /**
+   * get
+   */
+  public get<T>(
+    route: string,
+    options: Partial<RequestOptions> = {
+      method: 'get'
+    }
+  ): Promise<T> {
+    return this.req<T>({
+      path: route,
+      ...options
+    }) 
+  }
 
-  public async ping<T>(): Promise<T> {
+  /**
+   * post
+   */
+  public post<T>(
+    route: string,
+    options: Partial<RequestOptions> = {
+      method: 'post'
+    }
+  ): Promise<T> {
+    return this.req<T>({
+      path: route,
+      ...options
+    })
+  }
 
-    return await this.req({ method: "get" })
+  /**
+   * put 
+   */
+  public put<T>(
+    route: string,
+    options: Partial<RequestOptions> = {
+      method: 'put'
+    }
+  ): Promise<T> {
+    return this.req<T>({
+      path: route,
+      ...options
+    })
+  } 
+
+  /**
+   * patch
+   */
+  public patch<T>(
+    route: string,
+    options: Partial<RequestOptions> = {
+      method: 'patch'
+    }
+  ): Promise<T> {
+   
+    return this.req<T>({
+      path: route,
+      ...options
+    });
   }
 }
 
